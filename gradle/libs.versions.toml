@@ -15,6 +15,8 @@
 # Last update: 2023/07/29
 
 [versions]
+publish = "0.1.1-alpha"
+
 android-activity = "1.8.0-alpha06"          # http://d.android.com/jetpack/androidx/releases/activity
 android-core = "1.12.0-beta01"              # http://d.android.com/jetpack/androidx/releases/core
 android-lifecycle = "2.7.0-alpha01"         # http://d.android.com/jetpack/androidx/releases/lifecycle

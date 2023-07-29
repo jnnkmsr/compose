@@ -72,7 +72,7 @@ afterEvaluate {
     publishing {
         publications {
             create<MavenPublication>("release") {
-                artifactId = "compose.navigation"
+                artifactId = "compose-navigation"
 
                 from(components["release"])
             }
