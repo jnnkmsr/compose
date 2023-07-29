@@ -33,5 +33,8 @@ dependencyResolutionManagement {
 
 rootProject.name = "ComposeLibraries"
 include(":app")
-include(":compose-animated-icons")
+//include(":compose-animation")
+include(":compose-icon")
 include(":compose-navigation")
+//include(":compose-text")
+//include(":compose-theme")

@@ -94,6 +94,9 @@ dependencies {
 
     debugImplementation(libs.compose.tooling)
 
-    implementation(project(":compose-animated-icons"))
+//    implementation(project(":compose-animation"))
+    implementation(project(":compose-icon"))
     implementation(project(":compose-navigation"))
+//    implementation(project(":compose-text"))
+//    implementation(project(":compose-theme"))
 }
