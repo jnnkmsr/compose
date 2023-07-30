@@ -24,5 +24,5 @@ plugins {
 
 subprojects {
     group = "com.github.jnnkmsr.compose"
-    version = "0.1.4-alpha"
+    version = "0.1.5-alpha"
 }
