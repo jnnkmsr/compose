@@ -98,5 +98,5 @@ dependencies {
     implementation(project(":compose-icon"))
     implementation(project(":compose-navigation"))
 //    implementation(project(":compose-text"))
-//    implementation(project(":compose-theme"))
+    implementation(project(":compose-theme"))
 }

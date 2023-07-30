@@ -61,7 +61,38 @@ public class Durations(
      * to 400 milliseconds.
      */
     public val longExit: Int = DurationDefaults.LongExit,
-)
+) {
+    override fun equals(other: Any?): Boolean = when {
+        this === other -> true
+        other !is Durations -> false
+        shortEnter != other.shortEnter -> false
+        shortExit != other.shortExit -> false
+        mediumEnter != other.mediumEnter -> false
+        mediumExit != other.mediumExit -> false
+        longEnter != other.longEnter -> false
+        else -> longExit == other.longExit
+    }
+
+    override fun hashCode(): Int {
+        var result = shortEnter
+        result = 31 * result + shortExit
+        result = 31 * result + mediumEnter
+        result = 31 * result + mediumExit
+        result = 31 * result + longEnter
+        result = 31 * result + longExit
+        return result
+    }
+
+    override fun toString(): String =
+        "Durations(" +
+        "shortEnter=$shortEnter, " +
+        "shortExit=$shortExit, " +
+        "mediumEnter=$mediumEnter, " +
+        "mediumExit=$mediumExit, " +
+        "longEnter=$longEnter, " +
+        "longExit=$longExit)"
+
+}
 
 /** Holder for default [Durations] values. */
 private data object DurationDefaults {
