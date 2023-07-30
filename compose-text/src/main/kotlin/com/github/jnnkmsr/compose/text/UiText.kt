@@ -17,11 +17,26 @@
 package com.github.jnnkmsr.compose.text
 
 import android.os.Parcelable
+import androidx.annotation.Keep
 import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.ui.res.stringResource
 import kotlinx.parcelize.Parcelize
+
+/**
+ * Converts `this` [UiText] into a [String] that can be shown in the UI.
+ *
+ * @param args Format arguments for string resources.
+ */
+@Composable
+@ReadOnlyComposable
+@Keep
+public fun UiText.get(vararg args: Any): String = when (this) {
+    is StringText -> value
+    is ResourceText -> stringResource(value, *args)
+}
 
 /**
  * Wrapper for text to be shown in the UI, allowing to pass text either as a
@@ -29,14 +44,6 @@ import kotlinx.parcelize.Parcelize
  */
 @Immutable
 public sealed interface UiText : Parcelable {
-
-    /**
-     * Converts `this` [UiText] into a `String` that can be shown in the UI.
-     *
-     * @param args Format arguments for string resources.
-     */
-    @Composable
-    public operator fun invoke(vararg args: Any): String
 
     public companion object {
 
@@ -46,7 +53,7 @@ public sealed interface UiText : Parcelable {
          * @param text The string content.
          */
         public operator fun invoke(text: String): UiText =
-            StringUiText(text)
+            StringText(text)
 
         /**
          * Creates and returns a [UiText] instance for the given string resource
@@ -55,7 +62,7 @@ public sealed interface UiText : Parcelable {
          * @param resId The string resource ID.
          */
         public operator fun invoke(@StringRes resId: Int): UiText =
-            ResourceUiText(resId)
+            ResourceText(resId)
     }
 }
 
@@ -66,13 +73,9 @@ public sealed interface UiText : Parcelable {
  */
 @Parcelize
 @JvmInline
-public value class StringUiText internal constructor(
-    private val value: String,
-) : UiText {
-
-    @Composable
-    override fun invoke(vararg args: Any): String = value
-}
+public value class StringText internal constructor(
+    internal val value: String,
+) : UiText
 
 /**
  * [UiText] wrapper for string resources.
@@ -81,10 +84,6 @@ public value class StringUiText internal constructor(
  */
 @Parcelize
 @JvmInline
-public value class ResourceUiText internal constructor(
-    @StringRes private val value: Int,
-) : UiText {
-
-    @Composable
-    override fun invoke(vararg args: Any): String = stringResource(value, *args)
-}
+public value class ResourceText internal constructor(
+    @StringRes internal val value: Int,
+) : UiText
