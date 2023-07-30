@@ -72,7 +72,7 @@ afterEvaluate {
     publishing {
         publications {
             create<MavenPublication>("release") {
-                artifactId = "compose-animated-icons"
+                artifactId = "compose-icon"
 
                 from(components["release"])
             }
