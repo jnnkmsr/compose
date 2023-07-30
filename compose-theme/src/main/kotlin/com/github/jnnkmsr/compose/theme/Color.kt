@@ -14,27 +14,19 @@
  * limitations under the License.
  */
 
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        google()
-        mavenCentral()
-    }
-}
+package com.github.jnnkmsr.compose.theme
 
-@Suppress("UnstableApiUsage")
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
+import androidx.compose.material3.ColorScheme
+import androidx.compose.material3.contentColorFor
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.ReadOnlyComposable
+import androidx.compose.ui.graphics.Color
 
-rootProject.name = "ComposeLibraries"
-include(":app")
-include(":compose-animation")
-include(":compose-icon")
-include(":compose-navigation")
-//include(":compose-text")
-include(":compose-theme")
+/**
+ * Shorthand to obtain the content color for `this` [Color] using the theme's
+ * [ColorScheme].
+ */
+public val Color.contentColor: Color
+    @ReadOnlyComposable
+    @Composable
+    get() = Theme.colorScheme.contentColorFor(this)
