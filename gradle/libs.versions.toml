@@ -44,6 +44,7 @@ compose-material3 = { group = "androidx.compose.material3", name = "material3", 
 compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "android-navigation" }
 compose-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "compose" }
 compose-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview", version.ref = "compose" }
+compose-ui = { group = "androidx.compose.ui", name = "ui", version.ref = "compose" }
 compose-util = { group = "androidx.compose.ui", name = "ui-util", version.ref = "compose" }
 
 [plugins]
@@ -51,3 +52,4 @@ android-application = { id = "com.android.application", version.ref = "android-g
 android-library = { id = "com.android.library", version.ref = "android-gradle" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
