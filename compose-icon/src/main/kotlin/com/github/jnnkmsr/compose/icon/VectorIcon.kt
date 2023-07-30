@@ -22,15 +22,11 @@ import androidx.compose.animation.graphics.ExperimentalAnimationGraphicsApi
 import androidx.compose.animation.graphics.res.animatedVectorResource
 import androidx.compose.animation.graphics.res.rememberAnimatedVectorPainter
 import androidx.compose.animation.graphics.vector.AnimatedImageVector
-import androidx.compose.material3.LocalContentColor
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 
 /**
  * Wrapper for UI icons of different kinds (drawables, image vectors, animated
@@ -68,7 +64,7 @@ public fun StaticVectorIcon(imageVector: ImageVector): StaticVectorIcon =
  * [id] and providing a [Painter] for drawing the icon.
  */
 @JvmInline
-private value class DrawableVectorIcon(
+internal value class DrawableVectorIcon(
     /** The resource reference of the vector drawable. */
     @DrawableRes private val id: Int,
 ) : StaticVectorIcon {
@@ -90,7 +86,7 @@ private value class DrawableVectorIcon(
  * collections.
  */
 @JvmInline
-private value class ImageVectorIcon(
+internal value class ImageVectorIcon(
     /** The [ImageVector] graphics object. */
     internal val imageVector: ImageVector,
 ) : StaticVectorIcon
@@ -131,60 +127,4 @@ public data class AnimatedVectorIcon(
             animatedImageVector = AnimatedImageVector.animatedVectorResource(id),
             atEnd = atEnd,
         )
-}
-
-/**
- * A [Material Design icon](https://m3.material.io/styles/icons/overview)
- * component taking a [StaticVectorIcon] as input.
- *
- * If [icon] is a [StaticVectorIcon], the static vector icon will be displayed
- * using the given [tint]. If no [tint] is specified, the current default value
- * from [LocalContentColor] will be used.
- *
- * If [icon] is an [AnimatedVectorIcon], an animated vector icon will be
- * displayed. The animation state is animated between its initial and final
- * state depending on the given value of [atEnd].
- *
- * @param icon The [StaticVectorIcon] that is displayed.
- * @param contentDescription Text used by accessibility services to describe
- *   what this icon represents. This should always be provided unless this icon
- *   is used for decorative purposes, and does not represent a meaningful action
- *   that a user can take. The text should be localized, such as by using
- *   [stringResource] or similar.
- * @param modifier The [Modifier] to be applied to the icon container.
- * @param atEnd Only used if the [icon] is an [AnimatedVectorIcon], indicating
- *   whether the animated icon is at its end state.
- * @param tint Tint to be applied to the [icon]. If [Color.Unspecified] is
- *   provided, then no tint is applied. If [tint] is not specified that the
- *   current [LocalContentColor] will be applied.
- */
-@ExperimentalAnimationGraphicsApi
-@Composable
-public fun Icon(
-    icon: VectorIcon,
-    contentDescription: String?,
-    modifier: Modifier = Modifier,
-    atEnd: Boolean = false,
-    tint: Color = LocalContentColor.current,
-) {
-    when (icon) {
-        is ImageVectorIcon -> androidx.compose.material3.Icon(
-            imageVector = icon.imageVector,
-            contentDescription = contentDescription,
-            modifier = modifier,
-            tint = tint,
-        )
-        is DrawableVectorIcon -> androidx.compose.material3.Icon(
-            painter = icon.painter,
-            contentDescription = contentDescription,
-            modifier = modifier,
-            tint = tint,
-        )
-        is AnimatedVectorIcon -> androidx.compose.material3.Icon(
-            painter = icon.painter(atEnd),
-            contentDescription = contentDescription,
-            modifier = modifier,
-            tint = tint,
-        )
-    }
 }

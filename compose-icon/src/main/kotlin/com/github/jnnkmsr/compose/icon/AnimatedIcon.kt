@@ -71,6 +71,9 @@ import kotlinx.coroutines.flow.collectLatest
  *   that are _not_ animated by AVDs. All state transitions with non-`null`
  *   [AnimatedVectorIcon]s returned by [iconTransitionSpec] wil instead by
  *   animated by the AVD.
+ * @param size The [IconSize] setting the size of the icon. Defaults to the
+ *   current value of [LocalIconSize], which is `null` by default, meaning that
+ *   the icon will be drawn at its natural size.
  * @param tint Tint to be applied to the icon. If [Color.Unspecified] is
  *   provided, then no tint is applied. If [tint] is not specified, the current
  *   [LocalContentColor] will be applied.
@@ -86,6 +89,7 @@ public fun <S> AnimatedIcon(
     iconTransitionSpec: ((initialState: S, finalState: S) -> AnimatedVectorIcon?)? = null,
     transitionSpec: AnimatedContentTransitionScope<S>.() -> ContentTransform =
         { fadeIn() togetherWith fadeOut() },
+    size: IconSize? = LocalIconSize.current,
     tint: Color = LocalContentColor.current,
 ) {
     /**
@@ -114,6 +118,12 @@ public fun <S> AnimatedIcon(
     val latestTint by rememberUpdatedState(tint)
 
     /**
+     * The icon size, [remember][rememberUpdatedState]ed as an updated state to
+     * be referenced by long-lived lambdas.
+     */
+    val latestSize by rememberUpdatedState(size)
+
+    /**
      * Remembers tracking composable icon content for different state values in
      * a map that is observable by snapshots. Content is added lazily on state
      * changes by calling `getOrPutIconContent`.
@@ -128,6 +138,7 @@ public fun <S> AnimatedIcon(
                         contentDescription = latestContentDescription(state),
                         modifier = modifier,
                         tint = latestTint,
+                        size = latestSize,
                     )
                 }
             }
@@ -175,6 +186,7 @@ public fun <S> AnimatedIcon(
                                 contentDescription = latestContentDescription(initialState),
                                 modifier = modifier,
                                 tint = latestTint,
+                                size = latestSize,
                             )
                         }
 
