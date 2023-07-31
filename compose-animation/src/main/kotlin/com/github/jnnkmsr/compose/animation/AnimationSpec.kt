@@ -36,7 +36,7 @@ public fun <T> tween(
     totalDurationMillis: Int,
     delay: Float = 0f,
     duration: Float = 1f - delay,
-    easing: Easing = EasingDefaults.Standard,
+    easing: Easing = Easings.Standard,
 ): TweenSpec<T> = androidx.compose.animation.core.tween(
     durationMillis = (totalDurationMillis * duration).roundToInt(),
     delayMillis = (totalDurationMillis * delay).roundToInt(),
