@@ -41,37 +41,37 @@ public class Easings(
      * [Material 3](https://m3.material.io/styles/motion/easing-and-duration/applying-easing-and-duration)
      * _"standard"_ easing.
      */
-    public val standard: Easing = EasingDefaults.Standard,
+    public val standard: Easing = Standard,
     /**
      * [Easing] for non-emphasized enter-screen transitions. Defaults to the
      * [Material 3](https://m3.material.io/styles/motion/easing-and-duration/applying-easing-and-duration)
      * _"standard decelerate"_ easing.
      */
-    public val standardEnter: Easing = EasingDefaults.StandardDecelerate,
+    public val standardEnter: Easing = StandardDecelerate,
     /**
      * [Easing] for non-emphasized exit-screen transitions. Defaults to the
      * [Material 3](https://m3.material.io/styles/motion/easing-and-duration/applying-easing-and-duration)
      * _"standard accelerate"_ easing.
      */
-    public val standardExit: Easing = EasingDefaults.StandardAccelerate,
+    public val standardExit: Easing = StandardAccelerate,
     /**
      * [Easing] for emphasized on-screen transitions. Defaults to the
      * [Material 3](https://m3.material.io/styles/motion/easing-and-duration/applying-easing-and-duration)
      * _"emphasized"_ easing.
      */
-    public val emphasized: Easing = EasingDefaults.Emphasized,
+    public val emphasized: Easing = Emphasized,
     /**
      * [Easing] for emphasized enter-screen transitions. Defaults to the
      * [Material 3](https://m3.material.io/styles/motion/easing-and-duration/applying-easing-and-duration)
      * _"emphasized decelerate"_ easing.
      */
-    public val emphasizedEnter: Easing = EasingDefaults.EmphasizedDecelerate,
+    public val emphasizedEnter: Easing = EmphasizedDecelerate,
     /**
      * [Easing] for emphasized exit-screen transitions. Defaults to the
      * [Material 3](https://m3.material.io/styles/motion/easing-and-duration/applying-easing-and-duration)
      * _"emphasized accelerate"_ easing.
      */
-    public val emphasizedExit: Easing = EasingDefaults.EmphasizedAccelerate,
+    public val emphasizedExit: Easing = EmphasizedAccelerate,
 ) {
     override fun equals(other: Any?): Boolean = when {
         this === other -> true
@@ -103,61 +103,60 @@ public class Easings(
         "emphasizedEnter=$emphasizedEnter, " +
         "emphasizedExit=$emphasizedExit)"
 
-}
-
-/**
- * Holder for the default
- * [Material 3 easings](https://m3.material.io/styles/motion/easing-and-duration/).
- */
-internal object EasingDefaults {
-
     /**
-     * Easing for on-screen transitions from the
-     * [standard easing set](http://m3.material.io/styles/motion/easing-and-duration/tokens-specs#601d5552-a6e6-4d74-9886-ff8f24b9ec35).
+     * Holder for the default
+     * [Material 3 easings](https://m3.material.io/styles/motion/easing-and-duration/).
      */
-    val Standard: Easing = CubicBezierEasing(0.2f, 0f, 0f, 1f)
+    public companion object {
 
-    /**
-     * Easing for exit transitions from the
-     * [standard easing set](http://m3.material.io/styles/motion/easing-and-duration/tokens-specs#601d5552-a6e6-4d74-9886-ff8f24b9ec35).
-     */
-    val StandardAccelerate: Easing = CubicBezierEasing(0.3f, 0f, 1f, 1f)
+        /**
+         * Easing for on-screen transitions from the
+         * [standard easing set](http://m3.material.io/styles/motion/easing-and-duration/tokens-specs#601d5552-a6e6-4d74-9886-ff8f24b9ec35).
+         */
+        public val Standard: Easing = CubicBezierEasing(0.2f, 0f, 0f, 1f)
 
-    /**
-     * Easing for enter transitions from the
-     * [standard easing set](http://m3.material.io/styles/motion/easing-and-duration/tokens-specs#601d5552-a6e6-4d74-9886-ff8f24b9ec35).
-     */
-    val StandardDecelerate: Easing = CubicBezierEasing(0f, 0f, 0f, 1f)
+        /**
+         * Easing for exit transitions from the
+         * [standard easing set](http://m3.material.io/styles/motion/easing-and-duration/tokens-specs#601d5552-a6e6-4d74-9886-ff8f24b9ec35).
+         */
+        public val StandardAccelerate: Easing = CubicBezierEasing(0.3f, 0f, 1f, 1f)
 
-    /**
-     * Easing for on-screen transitions from the
-     * [emphasized easing set](http://m3.material.io/styles/motion/easing-and-duration/tokens-specs#cbea5c6e-7b0d-47a0-98c3-767080a38d95).
-     *
-     * Requires an API level ≥ 26. For older Android versions, the [Standard]
-     * easing is used instead.
-     */
-    val Emphasized: Easing =
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            PathEasing(
-                0.05f, 0f,
-                0.133333f, 0.06f,
-                0.166666f, 0.4f,
-                0.208333f, 0.82f,
-                0.25f, 1f,
-            )
-        } else {
-            Standard
-        }
+        /**
+         * Easing for enter transitions from the
+         * [standard easing set](http://m3.material.io/styles/motion/easing-and-duration/tokens-specs#601d5552-a6e6-4d74-9886-ff8f24b9ec35).
+         */
+        public val StandardDecelerate: Easing = CubicBezierEasing(0f, 0f, 0f, 1f)
 
-    /**
-     * Easing for exit transitions from the
-     * [emphasized easing set](http://m3.material.io/styles/motion/easing-and-duration/tokens-specs#cbea5c6e-7b0d-47a0-98c3-767080a38d95).
-     */
-    val EmphasizedAccelerate: Easing = CubicBezierEasing(0.3f, 0f, 0.8f, 0.15f)
+        /**
+         * Easing for on-screen transitions from the
+         * [emphasized easing set](http://m3.material.io/styles/motion/easing-and-duration/tokens-specs#cbea5c6e-7b0d-47a0-98c3-767080a38d95).
+         *
+         * Requires an API level ≥ 26. For older Android versions, the [Standard]
+         * easing is used instead.
+         */
+        public val Emphasized: Easing =
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                PathEasing(
+                    0.05f, 0f,
+                    0.133333f, 0.06f,
+                    0.166666f, 0.4f,
+                    0.208333f, 0.82f,
+                    0.25f, 1f,
+                )
+            } else {
+                Standard
+            }
 
-    /**
-     * Easing for enter transitions from the
-     * [emphasized easing set](http://m3.material.io/styles/motion/easing-and-duration/tokens-specs#cbea5c6e-7b0d-47a0-98c3-767080a38d95).
-     */
-    val EmphasizedDecelerate: Easing = CubicBezierEasing(0.05f, 0.7f, 0.1f, 1f)
+        /**
+         * Easing for exit transitions from the
+         * [emphasized easing set](http://m3.material.io/styles/motion/easing-and-duration/tokens-specs#cbea5c6e-7b0d-47a0-98c3-767080a38d95).
+         */
+        public val EmphasizedAccelerate: Easing = CubicBezierEasing(0.3f, 0f, 0.8f, 0.15f)
+
+        /**
+         * Easing for enter transitions from the
+         * [emphasized easing set](http://m3.material.io/styles/motion/easing-and-duration/tokens-specs#cbea5c6e-7b0d-47a0-98c3-767080a38d95).
+         */
+        public val EmphasizedDecelerate: Easing = CubicBezierEasing(0.05f, 0.7f, 0.1f, 1f)
+    }
 }
