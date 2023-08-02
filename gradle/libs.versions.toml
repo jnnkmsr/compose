@@ -20,7 +20,7 @@ publish = "0.1.1-alpha"
 android-activity = "1.8.0-alpha06"          # http://d.android.com/jetpack/androidx/releases/activity
 android-core = "1.12.0-beta01"              # http://d.android.com/jetpack/androidx/releases/core
 android-lifecycle = "2.7.0-alpha01"         # http://d.android.com/jetpack/androidx/releases/lifecycle
-android-gradle = "8.2.0-alpha14"            # http://mvnrepository.com/artifact/com.android.tools.build/gradle?repo=google
+android-gradle = "8.2.0-alpha15"            # http://mvnrepository.com/artifact/com.android.tools.build/gradle?repo=google
 android-navigation = "2.7.0-rc01"           # http://d.android.com/jetpack/androidx/releases/navigation
 android-splashscreen = "1.0.1"              # http://d.android.com/jetpack/androidx/releases/core
 compose = "1.6.0-alpha02"                   # http://d.android.com/jetpack/androidx/releases/compose#versions
