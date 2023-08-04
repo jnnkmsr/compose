@@ -33,7 +33,6 @@ import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
@@ -163,7 +162,9 @@ public fun <S> AnimatedIcon(
 
                     movableContentOf {
                         /** The target state of the AVD transition. */
-                        var targetAtEnd by remember { mutableStateOf(false) }
+                        var targetAtEnd by remember {
+                            mutableStateOf(latestTargetState == finalState)
+                        }
 
                         /**
                          * Holds the current state of the AVD transition. While
@@ -175,7 +176,9 @@ public fun <S> AnimatedIcon(
                          * way, the AVD leaves composition, and we prevent from
                          * animating in both directions.
                          */
-                        var currentAtEnd by rememberSaveable { mutableStateOf(targetAtEnd) }
+                        var currentAtEnd by remember {
+                            mutableStateOf(currentState == finalState)
+                        }
 
                         if (currentAtEnd) {
                             finalIconContent()
